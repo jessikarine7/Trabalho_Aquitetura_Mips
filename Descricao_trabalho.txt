@@ -1,26 +1,33 @@
-1) Utilizando a linguagem MIPS crie um programa que realize as seguintes opera ̧c ̃oes:
+1) Utilizando a linguagem MIPS crie um programa que realize as seguintes operações:
+
 • Leia uma temperatura em Fahrenheit, converta para Celsius e a exiba. Fahrenheit e
 Celsius se relacionam da seguinte forma:
-F = 32 +
-9∗C
-5
 
+	F = 32 + (9∗C/5)
 
-• Calcule o en ́esimo termo da sequˆencia de Fibonnacci, dado um N informado pelo usu ́ario.
-O en ́esimo termo da sequˆencia de Fibonnacci  ́e dado pela seguinte f ́ormula:
+• Calcule o enésimo termo da sequência de Fibonnacci, dado um N informado pelo usuário.
+O enésimo termo da sequência de Fibonnacci  ́e dado pela seguinte fórmula:
 
-FN = FN−1 + FN−2
+	FN = FN−1 + FN−2
 
-• Calcule o en ́esimo n ́umero par, dado um N informado pelo usu ́ario.
+• Calcule o enésimo número par, dado um N informado pelo usuário.
+
+----------------------------------------------------------------------------------------
 Sobre o programa:
-• Ao iniciar o programa deve apresentar um menu de op ̧c ̃oes, conforme abaixo:
+
+• Ao iniciar o programa deve apresentar um menu de opções, conforme abaixo:
+
 1 - Fahrenheit − > Celsius
 2 - Fibonnacci
 3 - En ́esimo par
 4 - Sair
-• O usu ́ario dever ́a informar a op ̧c ̃ao desejada. O programa ent ̃ao dever ́a solicitar os
-parˆametros necess ́arios a depender da op ̧c ̃ao.
-• O c ́alculo efetivo dever ́a ser realizado num procedimento onde ter ́a como argumento os
-valores lidos do usu ́ario e retornar ́a o valor calculado.
-• Ao t ́ermino do c ́alculo, deve ser exibido novamente o menu de op ̧c ̃oes.
-• O programa finalizar ́a com a sele ̧c ̃ao da op ̧c ̃ao 4.
+
+• O usuário deverá informar a opção desejada. O programa então deverá solicitar os
+parâmetros necessários a depender da opção.
+
+• O cálculo efetivo deverá ser realizado num procedimento onde terá como argumento os
+valores lidos do usuário e retornará o valor calculado.
+
+• Ao término do cálculo, deve ser exibido novamente o menu de opções.
+
+• O programa finalizará com a seleção da opção 4.

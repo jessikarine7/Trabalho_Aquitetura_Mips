@@ -1,7 +1,7 @@
 # Trabalho de Assembly MIPS realizado por Jéssica Karine Santos
 
 .data
-	menu: .asciiz "\n\n1- Fahrenheit -> Celsius\n2- Fibonnacci\n3- Enesimo par\n4-- Sair\nEscolha uma opção:"
+	menu: .asciiz "\n\n1- Fahrenheit -> Celsius\n2- Fibonnacci\n3- Enesimo par\n4- Sair\nEscolha uma opção:"
 
 	conversao_input: .asciiz "\nDigite uma temperatura em Fahrenheit: "
 	conversao_resultado: .asciiz "A temperatura convertida em Celsius é: "
@@ -10,12 +10,12 @@
 	conversao_num3: .float 11.0
 	
 	fibonnacci_input: .asciiz "\nDigite o enésimo termo da sequência de Fibonnacci: "
-	fibonnacci_resultado: .asciiz " é o enésimo termo."
+	fibonnacci_resultado: .asciiz "é o enésimo termo."
 	
 	enesimo_par_input:  .asciiz "\nDigite o enésimo par: "
-	enesimo_par_resultado:  .asciiz "O enesimo valor correspondendte deste numero é: "
+	enesimo_par_resultado:  .asciiz "O enésimo par correspondente deste numero é: "
 	
-	msg: .asciiz "\nFinalizado :)\n"
+	msg: .asciiz "\nFinalizado\n"
 	
 .text
 
@@ -35,11 +35,10 @@ main:
 	beq $t0, 2, sair
 
 conversao:
-	#chamando o valor da entrada
 	la $a0, conversao_input
 	li $v0, 4			
 	syscall
-	#Carregamento da funcao read_int
+
 	li $v0, 6
 	syscall
 
@@ -61,11 +60,9 @@ conversao:
 	jal main	
 
 fibonnacci:
-	#chamando o valor da entrada
 	la $a0, fibonnacci_input
 	li $v0, 4
 	syscall
-	#Carregamento da funcao read_int
 	li $v0, 5			
 	syscall
 	
@@ -73,7 +70,6 @@ fibonnacci:
 	la	$a0, ($v0)
 	jal	fibo
 	move 	$a0, $v0
-	jal	print
 	
 fibo:	
         addiu	$sp, $sp, -12
@@ -92,54 +88,29 @@ fibo:
 	addiu	$a0, $s0, -2
 	jal	fibo
 	addu	$v0, $v0, $s1
-	j	finalizado
-	
+
 feito:	
         addu	$v0, $0, $s0
-	j	finalizado
+			
 	
-finalizado: 
-        lw	$s1, 8($sp)
-	lw	$s0, 4($sp)
-	lw	$ra, 0($sp)
-	addiu	$sp, $sp, 12
-	jr	$ra
-	
-print:
-	
-	move	$a0, $v0
-	li	$v0, 1
-	syscall
-	
-	la $a0, fibonnacci_resultado
-	li $v0, 4
-	syscall
-	
-	jal main
-	jr	$ra		
-	
-enesimo:
-	#chamando o valor da entrada
+enesimo_par:
 	la    $a0, enesimo_par_input
  	li    $v0, 4
 	syscall
-	#Carregamento da funcao read_int
+
 	li    $v0, 5      
 	syscall
 	
-	#valor lido
 	move $t0 , $v0
 	
-	#inicializando $t1 contador e t2 enesimo numero
 	li $t1 , 1
 	li $t2 , 0
 	
 laco:
 	bgt $t1, $t0, print_enesimo_par
 	
-	# contando +1 para o looping
 	addi $t1,$t1,1
-	# contando os pares
+	
 	addi $t2,$t2,2
 	j laco
 	
@@ -148,7 +119,7 @@ print_enesimo_par:
 	la $a0, enesimo_par_resultado
 	li $v0, 4
 	syscall
-	#imprimi $t2 
+
 	li $v0, 1
 	move $a0, $t2
 	syscall

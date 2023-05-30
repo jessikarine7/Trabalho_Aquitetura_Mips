@@ -1,5 +1,4 @@
 # Trabalho de Assembly MIPS realizado por Jéssica Karine Santos
-
 .data
 	menu: .asciiz "\n\n1- Fahrenheit -> Celsius\n2- Fibonnacci\n3- Enesimo par\n4- Sair\nEscolha uma opção:"
 
@@ -15,7 +14,7 @@
 	enesimo_par_input:  .asciiz "\nDigite o enésimo par: "
 	enesimo_par_resultado:  .asciiz "O enésimo par correspondente deste numero é: "
 	
-	msg: .asciiz "\nFinalizado\n"
+	msg: .asciiz "\nPrograma Finalizado\n"
 	
 .text
 
@@ -32,7 +31,11 @@ main:
 	move $t0, $v0
 	
 	beq $t0, 1, conversao	
-	beq $t0, 2, sair
+	beq $t0, 2, fibonnacci
+	beq $t0, 3, enesimo_par
+	beq $t0, 4, sair
+	
+	j main
 
 conversao:
 	la $a0, conversao_input
@@ -57,7 +60,7 @@ conversao:
 	mov.s $f12, $f0
 	li $v0, 2      
 	syscall
-	jal main	
+	j main	
 
 fibonnacci:
 	la $a0, fibonnacci_input
@@ -68,8 +71,9 @@ fibonnacci:
 	
 
 	la	$a0, ($v0)
-	jal	fibo
-	move 	$a0, $v0
+	jal fibo
+	
+	j print
 	
 fibo:	
         addiu	$sp, $sp, -12
@@ -91,7 +95,20 @@ fibo:
 
 feito:	
         addu	$v0, $0, $s0
-			
+        
+print:
+	
+	move	$a0, $v0
+	li	$v0, 1
+	syscall
+	
+	la $a0, fibonnacci_resultado
+	li $v0, 4
+	syscall
+	
+	jal main
+	jr	$ra
+	j main		
 	
 enesimo_par:
 	la    $a0, enesimo_par_input
@@ -123,7 +140,7 @@ print_enesimo_par:
 	li $v0, 1
 	move $a0, $t2
 	syscall
-	jal main
+	j main	
 
 sair:		
 	la $a0, msg
@@ -132,3 +149,5 @@ sair:
 			
 	li $v0, 10
 	syscall
+	
+	
